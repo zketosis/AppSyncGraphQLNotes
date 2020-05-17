@@ -196,7 +196,7 @@
                             "Fn::Join": [
                                 "-",
                                 [
-                                    "Note",
+                                    "Note3a3573",
                                     "role",
                                     {
                                         "Ref": "GetAttGraphQLAPIApiId"
@@ -211,7 +211,7 @@
                             "Fn::Join": [
                                 "-",
                                 [
-                                    "Note",
+                                    "Notedfb64e",
                                     "role",
                                     {
                                         "Ref": "GetAttGraphQLAPIApiId"

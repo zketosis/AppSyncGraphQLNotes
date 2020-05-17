@@ -116,7 +116,7 @@ function App() {
               <input
                 type="text"
                 className="form-control form-control-lg"
-                placeholder="New Note"
+                placeholder="New Stuff goes here."
                 aria-label="Note"
                 aria-describedby="basic-addon2"
                 value={value}
@@ -128,7 +128,7 @@ function App() {
                   type="button"
                   onClick={handleSubmit}
                 >
-                  Add Note
+                  Add A quick Note
                 </button>
                 <button
                   className="btn btn-warning border border-light text-white font-weight-bold"

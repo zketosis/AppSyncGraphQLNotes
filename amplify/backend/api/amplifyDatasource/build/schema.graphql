@@ -1,10 +1,12 @@
 type Note {
   id: ID!
-  note: String!
+  note: String
+  owner: String
   _version: Int!
   _deleted: Boolean
   _lastChangedAt: AWSTimestamp!
-  owner: String
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
 }
 
 enum ModelSortDirection {
@@ -94,9 +96,23 @@ input ModelSizeInput {
 input ModelNoteFilterInput {
   id: ModelIDInput
   note: ModelStringInput
+  owner: ModelStringInput
   and: [ModelNoteFilterInput]
   or: [ModelNoteFilterInput]
   not: ModelNoteFilterInput
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
 }
 
 type Query {
@@ -107,13 +123,15 @@ type Query {
 
 input CreateNoteInput {
   id: ID
-  note: String!
+  note: String
+  owner: String
   _version: Int
 }
 
 input UpdateNoteInput {
   id: ID!
   note: String
+  owner: String
   _version: Int
 }
 
@@ -133,19 +151,6 @@ input ModelNoteConditionInput {
   and: [ModelNoteConditionInput]
   or: [ModelNoteConditionInput]
   not: ModelNoteConditionInput
-}
-
-enum ModelAttributeTypes {
-  binary
-  binarySet
-  bool
-  list
-  map
-  number
-  numberSet
-  string
-  stringSet
-  _null
 }
 
 type Subscription {

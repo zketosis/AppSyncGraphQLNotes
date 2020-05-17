@@ -1,10 +1,7 @@
 {
-    "projectName": "notesapp",
-    "version": "2.0",
+    "projectName": "AppSyncGraphQLNotes",
+    "version": "3.0",
     "frontend": "javascript",
-    "providers": [
-        "awscloudformation"
-    ],
     "javascript": {
         "framework": "react",
         "config": {
@@ -13,5 +10,8 @@
             "BuildCommand": "npm run-script build",
             "StartCommand": "npm run-script start"
         }
-    }
+    },
+    "providers": [
+        "awscloudformation"
+    ]
 }
