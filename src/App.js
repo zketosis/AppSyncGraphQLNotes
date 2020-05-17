@@ -81,6 +81,7 @@ function App() {
     Hub.listen('auth', listener);
 
     const subscription = DataStore.observe(Note).subscribe(msg => {
+      console.log(msg.model, msg.opType, msg.element);
       listNotes(setNotes);
     });
 
