@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Amplify,{ Hub } from "@aws-amplify/core";
 import { DataStore, Predicates } from "@aws-amplify/datastore";
 import { Note } from "./models";
 import { withAuthenticator } from "aws-amplify-react";
+import { Auth } from 'aws-amplify';
 import aws_exports from "./aws-exports"; // specify the location of aws-exports.js file on your project
 Amplify.configure(aws_exports);
 
 async function listNotes(setNotes) {
   const notes = await DataStore.query(Note, Predicates.ALL);
   setNotes(notes);
+}
+
+async function signOut() {
+  try {
+    await Auth.signOut({ global: true });
+  } catch (error) {
+    console.log('error signing out: ', error);
+  }
 }
 
 function App() {
@@ -101,13 +109,7 @@ function App() {
 
   return (
     <div className="App">
-      <header className="jumbotron jumbotron-fluid bg-dark">
-        <img
-          src={logo}
-          className="App-logo"
-          alt="logo"
-          style={{ height: "150px" }}
-        />
+      <header>
       </header>
       <div className="container">
         {displayAdd ? (
@@ -128,7 +130,7 @@ function App() {
                   type="button"
                   onClick={handleSubmit}
                 >
-                  Add A quick Note
+                  Add A Note
                 </button>
                 <button
                   className="btn btn-warning border border-light text-white font-weight-bold"
@@ -138,6 +140,15 @@ function App() {
                   }}
                 >
                   Search
+                </button>
+                <button
+                    className="btn btn-warning border border-light text-white font-weight-bold"
+                    type="button"
+                    onClick={e => {
+                      signOut();
+                    }}
+                >
+                  Logout
                 </button>
               </div>
             </div>
@@ -213,4 +224,4 @@ function App() {
   );
 }
 
-export default withAuthenticator(App, { includeGreetings: true });
+export default withAuthenticator(App, { includeGreetings: false });
